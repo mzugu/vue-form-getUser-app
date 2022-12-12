@@ -1,26 +1,54 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="mb-5">
+      <button @click="ToggleButtons" :class="buttonStyle">{{btnData}}</button>
+  </div>
+  <div v-if="isProfile"><UserProfile /></div>
+  <div v-if="isForm"><FormData /></div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UserProfile from './components/UserProfile.vue'
+import FormData from './components/FormData.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    UserProfile, FormData
+  },
+  data(){
+    return {
+      isProfile: true,
+      isForm:  false,
+      btnData: "Open Form",
+      buttonStyle: "btn btn-primary"
+    }
+  },
+  methods: {
+    ToggleButtons(){
+      this.isProfile = !this.isProfile
+      this.isForm = !this.isForm
+      if(this.isForm){
+          this.btnData = "Open Get User"
+          this.buttonStyle = "btn btn-dark"
+      }
+      else{
+        this.btnData ="Open Form",
+        this.buttonStyle = "btn btn-secondary"
+      }
+    },
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  width: 400px;
+  height: 100vh;
+  margin: auto;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
