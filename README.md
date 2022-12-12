@@ -1,4 +1,4 @@
-# Vue Forma and get random user app
+# Vue Form and get random user app
 
 ## Project setup
 ```
